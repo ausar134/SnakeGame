@@ -31,6 +31,7 @@ namespace Snake
             {
                 Console.WriteLine(myName);
             }
+
             Console.ReadLine();
 
             Console.WriteLine("What is your name?");
