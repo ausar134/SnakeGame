@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace Snake
 {
     public class Program
@@ -14,7 +15,11 @@ namespace Snake
             string pointString = "";
             bool increasingNumber = true;
             int pointNumber = 0;
-      
+
+
+            // Enum.GetValues(typeof(ConsoleColor)).ToArray()
+            ConsoleColor[] colors = new ConsoleColor[]
+            { ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Blue ,ConsoleColor.Magenta};
             
 
             //Infinite loop of the Code Below...
@@ -22,8 +27,7 @@ namespace Snake
             {
                 pointNumber = 0;
                 increasingNumber = true;
-                
-                
+
                 //Cycle through 20 times... 
                 //We start from 0-19 it's used for increase and decrease...
                 for (int i = 0; i < 19; i++)
@@ -48,20 +52,24 @@ namespace Snake
                     //Reset the string each time...
                     pointString = "";
 
-                    //Re-create and add the "!" N times
-                    //depending on the value of pointNumber...
-                    for (int j = 0; j < pointNumber; j++)
+
+                    
+                        //Re-create and add the "!" N times
+                        //depending on the value of pointNumber...
+                        for (int j = 0; j < pointNumber; j++)
                     {
                         pointString += "!";
                     }
 
-                    foreach (ConsoleColor color in Enum.GetValues(typeof(ConsoleColor)))
-                    {
-                        Console.ForegroundColor = color;
-                        Console.WriteLine(myName + pointString, "{color}");
-                        Console.ReadKey();
-                    }
                     
+
+
+                        for (int k = 0; i < colors.Length; k++)
+                        {
+                            Console.ForegroundColor = colors[k];
+                            Console.WriteLine(myName + pointString);
+                            Console.ReadKey();
+                        }                    
                 }
             }
         }
