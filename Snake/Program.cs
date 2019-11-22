@@ -5,49 +5,51 @@ namespace Snake
 {
     public class Program
     {
-        
+
 
         static void Main(string[] args)
 
         {
             string myName = "Aggelos";
-            int myAge = 23;
+            string pointString = "";
+            bool increasingNumber = true;
+            int pointNumber = 0;
 
-            char[] exclamationPoint = new char[1] {'!'};
-            char point = '!';
-            string playersName = "";
-            int playersAge;
-
-
-            //Create a count that is equal to 0 and add 1 more until count reaches 10, the print my name...
-            for (int count = 0; count < 10; count++)
+            //Cycle through 20 times... 
+            //We start from 0-19 it's used for increase and decrease...
+            for (int i = 0; i < 19; i++)
             {
-                Console.WriteLine(myName + point);
+                //When it completes 9 cycles...
+                //Increase changes to false because of the trigger below...
+                if (increasingNumber)
+                {
+                    pointNumber += 1;
+                }
+                else
+                {
+                    pointNumber -= 1;
+                }
+                //Trigger to change from increase to decrease...
+                if (i == 9)
+                {
+                    increasingNumber = false;
+                }
 
-                //for (int expoint = 0; expoint < exclamationPoint.Length; expoint++)
-                //{
-                //    Console.WriteLine(point);
-                //}    
+                //Reset the string each time...
+                pointString = "";
+
+                //Re-create and add the "!" N times
+                //depending on the value of pointNumber...
+                for (int j = 0; j < pointNumber; j++)
+                {
+                    pointString += "!";
+                }
+                Console.WriteLine(myName + pointString);
+                
             }
-
             Console.ReadLine();
 
-            Console.WriteLine("What is your name?");
-            playersName = Console.ReadLine();
-            Console.WriteLine("Hello " + playersName + "! ");
-            Console.WriteLine("What is your age " + playersName);
-            playersAge = Console.Read();
-            Console.WriteLine("So just to make sure, your name is " + playersName + " and you are " + playersAge);
-
-
-
-            //Create a variable and add 1 more until the total is equal to 10...
-            //int number = 0;
-            //do
-            //{
-            //    Console.WriteLine("Hello, my name is " + myName + " and I am " + myAge + " years old");
-            //    number++;
-            //} while (number < 10);
         }
-    }
+    } 
 }
+
