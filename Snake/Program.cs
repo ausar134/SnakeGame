@@ -14,17 +14,20 @@ namespace Snake
             string pointString = "";
             bool increasingNumber = true;
             int pointNumber = 0;
+      
+            
 
             //Infinite loop of the Code Below...
             while (true)
             {
+                pointNumber = 0;
+                increasingNumber = true;
+                
                 
                 //Cycle through 20 times... 
                 //We start from 0-19 it's used for increase and decrease...
                 for (int i = 0; i < 19; i++)
                 {
-
-                
                     //When it completes 9 cycles...
                     //Increase changes to false because of the trigger below...
                     if (increasingNumber)
@@ -40,13 +43,6 @@ namespace Snake
                     if (i == 9)
                     {
                         increasingNumber = false;
-
-                    }
-
-                    //Trigger to change from decrease to increase again...
-                    else if (i == 0)
-                    {
-                        increasingNumber = true;
                     }
 
                     //Reset the string each time...
@@ -58,13 +54,16 @@ namespace Snake
                     {
                         pointString += "!";
                     }
-                    Console.WriteLine(myName + pointString);
-                    Console.ReadLine();
 
+                    foreach (ConsoleColor color in Enum.GetValues(typeof(ConsoleColor)))
+                    {
+                        Console.ForegroundColor = color;
+                        Console.WriteLine(myName + pointString, "{color}");
+                        Console.ReadKey();
+                    }
+                    
                 }
             }
-                
-            
         }
     } 
 }
