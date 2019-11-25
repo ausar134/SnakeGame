@@ -1,26 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Snake
 {
     public class Program
     {
-
-
         static void Main(string[] args)
-
         {
             string myName = "Aggelos";
             string pointString = "";
             bool increasingNumber = true;
             int pointNumber = 0;
+            int origWidth, myWidth;
+            int origHeight, myHeight;
 
 
-            // Enum.GetValues(typeof(ConsoleColor)).ToArray()
+            origWidth = Console.WindowWidth;
+            origHeight = Console.WindowHeight;
+
+            myWidth = (origWidth / 2) + 10;
+            myHeight = (origHeight / 2) + 10;
+
+            Console.SetWindowSize(myWidth, myHeight);
+
             ConsoleColor[] colors = new ConsoleColor[]
             { ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Blue ,ConsoleColor.Magenta};
-            
 
             //Infinite loop of the Code Below...
             while (true)
@@ -49,30 +55,42 @@ namespace Snake
                         increasingNumber = false;
                     }
 
-                    //Reset the string each time...
+                    //    //Reset the string each time...
                     pointString = "";
 
-
-                    
-                        //Re-create and add the "!" N times
-                        //depending on the value of pointNumber...
-                        for (int j = 0; j < pointNumber; j++)
+                    //Re-create and add the "!" N times
+                    //depending on the value of pointNumber...
+                    for (int j = 0; j < pointNumber; j++)
                     {
                         pointString += "!";
                     }
 
-                    
 
+                    for (int k = 0; k < colors.Length - 1; k++)
+                    {
 
-                        for (int k = 0; i < colors.Length; k++)
-                        {
-                            Console.ForegroundColor = colors[k];
-                            Console.WriteLine(myName + pointString);
-                            Console.ReadKey();
-                        }                    
+                        Console.ForegroundColor = colors[k];
+                        Console.WriteLine(myName + pointString);
+                        Console.ReadKey();
+
+                    }
                 }
             }
+
+
         }
-    } 
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
