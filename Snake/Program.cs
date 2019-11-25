@@ -9,75 +9,47 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            string myName = "Aggelos";
-            string pointString = "";
-            bool increasingNumber = true;
-            int pointNumber = 0;
-            int origWidth, myWidth;
-            int origHeight, myHeight;
+            int xPos = 0;
+            int yPos = 0;
+            int numberX = 1;
+            int numberY = 1;
 
+            
 
+            int origWidth;
+            int origHeight;
             origWidth = Console.WindowWidth;
             origHeight = Console.WindowHeight;
+      
+            Console.SetWindowSize(origWidth, origHeight);
+            Console.CursorVisible = false;
+            Console.Clear();
 
-            myWidth = (origWidth / 2) + 10;
-            myHeight = (origHeight / 2) + 10;
 
-            Console.SetWindowSize(myWidth, myHeight);
 
-            ConsoleColor[] colors = new ConsoleColor[]
-            { ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Blue ,ConsoleColor.Magenta};
-
-            //Infinite loop of the Code Below...
             while (true)
             {
-                pointNumber = 0;
-                increasingNumber = true;
+                Console.Clear();
+                Console.SetCursorPosition(xPos, yPos);
 
-                //Cycle through 20 times... 
-                //We start from 0-19 it's used for increase and decrease...
-                for (int i = 0; i < 19; i++)
+               
+                xPos += numberX;
+                yPos += numberY;
+
+                if (xPos >= origWidth-1 || xPos == 0)
                 {
-                    //When it completes 9 cycles...
-                    //Increase changes to false because of the trigger below...
-                    if (increasingNumber)
-                    {
-                        pointNumber += 1;
-                    }
-                    else
-                    {
-                        pointNumber -= 1;
-                    }
-
-                    //Trigger to change from increase to decrease...
-                    if (i == 9)
-                    {
-                        increasingNumber = false;
-                    }
-
-                    //    //Reset the string each time...
-                    pointString = "";
-
-                    //Re-create and add the "!" N times
-                    //depending on the value of pointNumber...
-                    for (int j = 0; j < pointNumber; j++)
-                    {
-                        pointString += "!";
-                    }
-
-
-                    for (int k = 0; k < colors.Length - 1; k++)
-                    {
-
-                        Console.ForegroundColor = colors[k];
-                        Console.WriteLine(myName + pointString);
-                        Console.ReadKey();
-
-                    }
+                    numberX = numberX * (-1);
+                    //xAsc = !xAsc;
                 }
+                if (yPos >= origHeight || yPos ==0)
+                {
+                    numberY = numberY * (-1);
+                  //  yAsc = !yAsc;
+                }
+
+                Console.Write("*");
+                Thread.Sleep(50);
             }
-
-
         }
     }
 }
