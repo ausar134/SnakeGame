@@ -16,6 +16,7 @@ namespace Snake
 
             int origWidth;
             int origHeight;
+            bool isGamePlayable = true;
 
             origWidth = Console.WindowWidth;
             origHeight = Console.WindowHeight;
@@ -28,7 +29,7 @@ namespace Snake
             
 
 
-            while (true)
+            while (isGamePlayable)
             {
                 Console.Clear();
                 Console.SetCursorPosition(xPos, yPos);
@@ -37,7 +38,7 @@ namespace Snake
                 //xPos += numberX;
                 //yPos += numberY;
 
-                #region Keyboard Controls and Boundary check
+                #region Keyboard Controls and Window Boundary Check
 
                 if (Console.KeyAvailable)
                 {
@@ -55,19 +56,19 @@ namespace Snake
                     {
                         xPos -= 1;
 
-
                        if(keyInfo.Key == ConsoleKey.RightArrow)
-                        {
+                       {
                             return;
-                        }
+                       }
                     }
-                    
                         if (keyInfo.Key == ConsoleKey.RightArrow && xPos !=119)
                         {
                         xPos += 1;
                            
                           if(keyInfo.Key == ConsoleKey.LeftArrow)
-                        { return; }
+                          {
+                            return;
+                          }
                             
                         }
                     if(keyInfo.Key == ConsoleKey.DownArrow && yPos !=30)
@@ -75,7 +76,9 @@ namespace Snake
                         yPos += 1;
 
                         if (keyInfo.Key == ConsoleKey.UpArrow)
-                        { return; }
+                        {
+                            return;
+                        }
                     }
                 }
                 #endregion 
