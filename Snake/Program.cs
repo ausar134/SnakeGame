@@ -29,6 +29,7 @@ namespace Snake
 
         private static void SelfMovingSnake()
         {
+            
             int foodX = Random.Next(2, MaxWidth - 2);
             int foodY = Random.Next(2, MaxHeight - 2);
 
@@ -42,7 +43,7 @@ namespace Snake
                 snakeBody[i] = new Point(0, 0);
             }
 
-            bool colision = false;
+            bool collision = false;
             int xStep = 1;
             int yStep = 0;
             ConsoleKeyInfo key;
@@ -82,7 +83,8 @@ namespace Snake
                             break;
                     }
                 }
-                
+
+                #region Enables snake movement and the body follows the same movement...
                 for (int i = snakeSegments-1; 0 < i; i--)
                 {
                         snakeBody[i].X = snakeBody[i - 1].X;
@@ -93,9 +95,13 @@ namespace Snake
                 snakeBody[0].Y += yStep;
                 Console.SetCursorPosition(snakeBody[0].X, snakeBody[0].Y);
                 Console.WriteLine("*");
+                #endregion
 
+                //Add food to snake body and spawn new food...
                 if (snakeBody[0].X == foodX && snakeBody[0].Y == foodY && snakeSegments < snakeBody.Length)
                 {
+                    collision = false;
+
                     foodX = Random.Next(2, MaxWidth - 2);
                     foodY = Random.Next(2, MaxHeight - 2);
 
@@ -105,17 +111,22 @@ namespace Snake
                     snakeSegments++;
                 }
 
-                //for (int i = 1; i < snakeBody.Length; i++)
-                //{
-                //    colision = snakeBody[0].X == snakeBody[i].X || snakeBody[0].Y == snakeBody[i].Y;
-                //    if (colision)
-                //    {
-                //        break;
-                //    }
-                //}
+                for (int i = 0; i < snakeBody.Length; i++)
+                {
+                    collision = snakeBody[0].X == snakeBody[i].X 
+                        || snakeBody[0].Y == snakeBody[i].Y;
+                    //if(snakeBody[0].X == snakeBody[0].X)
+                    //{
+                    //    collision = false;
+                    //}
+                    if (collision)
+                    {
+                        break;
+                    }
+                }
 
                 // Lose condition
-                if ( snakeBody[0].X >= MaxWidth || snakeBody[0].X <= 0 || snakeBody[0].Y >= MaxHeight || snakeBody[0].Y <= 0)
+                if ( collision || snakeBody[0].X >= MaxWidth || snakeBody[0].X <= 0 || snakeBody[0].Y >= MaxHeight || snakeBody[0].Y <= 0)
                 {
                     foodX = Random.Next(2, MaxWidth - 2);
                     foodY = Random.Next(2, MaxHeight - 2);
@@ -138,7 +149,7 @@ namespace Snake
                     snakeSegments = 1;
                     snakeBody[0].X = StartingX;
                     snakeBody[0].Y = StartingY;
-                    colision = false;
+                    collision = false;
                     xStep = 1;
                     yStep = 0;
                 }
@@ -149,7 +160,7 @@ namespace Snake
                     Console.SetCursorPosition(snakeBody[i].X, snakeBody[i].Y);
                     Console.Write("*");
                 }
-                Thread.Sleep(25);
+                Thread.Sleep(50);
             }
         }
     }
