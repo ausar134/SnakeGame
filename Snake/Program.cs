@@ -68,8 +68,8 @@ namespace Snake
             Console.SetCursorPosition(MaxWidth - BorderSize, MaxHeight - BorderSize);
             Console.Write("╝");
 
-            int foodX = Random.Next(2, BorderWidth-2);
-            int foodY = Random.Next(2, BorderHeight-2);
+            int foodX = Random.Next(BorderSize + 2, BorderWidth-2);
+            int foodY = Random.Next(BorderSize + 2, BorderHeight-2);
 
             int snakeSegments = 1;
             int snakeSpeed = 500;
@@ -220,7 +220,7 @@ namespace Snake
 
                 }
                     Console.ForegroundColor = ConsoleColor.White;
-                    Thread.Sleep(snakeSpeed/3);
+                    Thread.Sleep(snakeSpeed);
             }
             #endregion
         } 
